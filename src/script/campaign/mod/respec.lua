@@ -179,7 +179,7 @@ local function createButton(subtype)
     local bW, bH = reset_skill_button:Bounds()
     local bX, bY = reset_skill_button:Position()
 
-    button:SetImagePath("script/console/icon_reset.png")
+    button:SetImagePath("ui/respec/icon_reset.png")
     button:Resize(bW - 2, bH - 2)
     button:MoveTo(bX - bW, bY + 1)
 
