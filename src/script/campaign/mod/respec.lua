@@ -1,3 +1,5 @@
+local debug = require("tw-debug")("mk:respec")
+
 local options = {
     cost = {
         resource_key = "troy_gold",
@@ -6,10 +8,6 @@ local options = {
 }
 
 local SAVE_KEY_PREFIX = "mk_respec_count_cqi_"
-
-local function log(msg)
-    out("respec: " .. tostring(msg))
-end
 
 local function createConfirmationBox(id, text, on_accept_callback, on_cancel_callback)
 	local confirmation_box = core:get_or_create_component(id, "ui/Common UI/dialogue_box")
@@ -164,13 +162,14 @@ local function resetSkills(cqi, cost)
 end
 
 local function createButton(subtype)
+    debug("createButton subtype:", subtype)
     local existingButton = find_uicomponent(core:get_ui_root(), "character_details_panel", subtype .. "_force_reset_skills_button")
     if existingButton then
         removeComponent(existingButton)
     end
 
-    log("create button for " .. getSelectedCharCQI());
-    log("rank" .. cm:get_character_by_cqi(getSelectedCharCQI()):rank());
+    debug("create button for", getSelectedCharCQI());
+    debug("rank", cm:get_character_by_cqi(getSelectedCharCQI()):rank());
 
     local skill_points_holder = find_uicomponent(core:get_ui_root(), "character_details_panel", subtype .. "_info", "skill_points_holder")
     local button = core:get_or_create_component(subtype .. "_force_reset_skills_button", "ui/templates/round_small_button")
@@ -237,10 +236,11 @@ local function createButton(subtype)
                 "respec_confirm_box",
                 content,
                 function()
+                    debug("Reset skills for", cqi, cost)
                     resetSkills(cqi, cost)
                 end,
                 function()
-                    -- log("nope")
+                    debug("Don't reset skills")
                 end
             )
 
@@ -260,13 +260,17 @@ local function createButtons()
 end
 
 local function init()
+    debug("Init")
+
     local listeners = {
         panelOpened = "respec_skills_button_listener",
         characterSelected = "respec_character_selected_listener",
+        ComponentLClickUpSkills = "respec_ComponentLClickUp_character_details_panel_skills_listener"
     }
 
     core:remove_listener(listeners.panelOpened)
     core:remove_listener(listeners.characterSelected)
+    core:remove_listener(listeners.ComponentLClickUpSkills)
 
     core:add_listener(
         listeners.panelOpened,
@@ -287,6 +291,19 @@ local function init()
         createButtons,
         true
     )
+
+    -- root > character_details_panel > tab_buttons_holder > TabGroup > skills
+    core:add_listener(
+		listeners.ComponentLClickUpSkills,
+		"ComponentLClickUp",
+        function(context)
+            debug("ComponentLClickUp check", context.string);
+            local btn = find_uicomponent(core:get_ui_root(), "character_details_panel", "tab_buttons_holder", "TabGroup", "skills")
+            return context.string == "skills" and btn == UIComponent(context.component)
+		end,
+        createButtons,
+		true
+	)
 end
 
 cm:add_first_tick_callback(init)
