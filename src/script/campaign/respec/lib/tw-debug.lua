@@ -22,10 +22,10 @@
     SOFTWARE.
 --]]
 
-local inspect = require("vendors/inspect")
+local inspect = require("respec/lib/vendors/inspect")
 local inspectOptions = { depth = 4 }
 
-local LIP = require("vendors/LIP")
+local LIP = require("respec/lib/vendors/LIP")
 
 local DEBUG_INI_FILEPATH = "debug.ini"
 
