@@ -1,0 +1,19 @@
+{
+  "name": "tw-troy-mod-respec-button",
+  "version": "1.0.3",
+  "description": "This is a mod that adds a single button to the character UI to fully respec the character's skills, heroes and agents. This can be done multiple times, but each subsequent respec will cost you twice as much gold. It is a direct port of [One Button Respec](https://steamcommunity.com/sharedfiles/filedetails/?id=1588424293) warhammer 2 mod from **Drunk Flamingo** and **Sm0kin**.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mklabs/tw-troy-mod-respec-button.git"
+  },
+  "author": "mklabs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mklabs/tw-troy-mod-respec-button/issues"
+  },
+  "homepage": "https://github.com/mklabs/tw-troy-mod-respec-button#readme"
+}

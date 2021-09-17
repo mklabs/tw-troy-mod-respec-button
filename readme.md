@@ -12,4 +12,14 @@ Huge thanks to Drunk Flamingo and Sm0kin for the original mod authored for Warrh
 
 ## Install
 
-Download the mod .pack file, and put it into Troy's data folder ( "...Epic Games\TotalWarSagaTROY\data") and it will activate automatically. If you want to deactivate it you will need to move it out of the folder.
+Download from Epic Game Store: https://www.epicgames.com/store/en-US/mods/a-total-war-saga-troy--0dda06cd862d44c3b7e38e47667f00f0
+
+Download from Steam Workshop: ...
+
+## Changelog
+
+### 1.0.3 (2021-09-17)
+
+##### New Features
+
+*  Update pack for 1.6 version of the game (no source change needed) ([65c54def](https://github.com/mklabs/tw-troy-mod-respec-button/commit/65c54defc38c64da3aaf558b291ca806e317891b))
